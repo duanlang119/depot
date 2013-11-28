@@ -13,7 +13,7 @@
 
 <div id="banner">
     <%= image_tag("logo.png") %>
-	<%= @page_title || "Pragmatic Bookshelf" %>
+	<%= @page_title || t('.title') %>
 </div>
 
 <div id="columns">
@@ -26,11 +26,22 @@
 		     <% end %>
 		
 		<ul>
-			<li><a href="http://www....">Home</a></li>
-			<li><a href="http://www..../faq">Questions</a></li>
-			<li><a href="http://www..../news">News</a></li>
- 			<li><a href="http://www..../contact">Contact</a></li>
+			<li><a href="http://localhost:3000"<%= t('.home') %></a></li>
+			<li><a href="http://localhost:3000/users"><%= t('.questions') %></a></li>
+			<li><a href="http://localhost:3000/products"><%= t('.news') %></a></li>
+ 			<li><a href="http://localhost:3000"><%= t('.contact') %></a></li>
 		</ul>
+		<% if session[:user_id] %>
+<ul>
+<li><%= link_to 'Orders', orders_path %></li>
+<li><%= link_to 'Products', products_path %></li>
+<li><%= link_to 'Users', users_path %></li>
+report erratum • discuss
+Iteration I4: Adding a Sidebar, More Administration • 203
+</ul>
+<%= button_to 'Logout', logout_path, method: :delete %>
+<% end %>
+
 	</div>
 	
 	<div id="main">
